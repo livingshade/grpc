@@ -270,4 +270,11 @@ class ShutdownCallback : public grpc_completion_queue_functor {
   return callback_cq;
 }
 
+int Channel::SetInterceptorCreators(
+    std::vector<
+        std::unique_ptr<grpc::experimental::ClientInterceptorFactoryInterface>>
+        new_creators) {
+  interceptor_creators_ = new_creators;
+}
+
 }  // namespace grpc
