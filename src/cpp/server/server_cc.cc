@@ -1367,6 +1367,7 @@ grpc::CompletionQueue* Server::CallbackCQ() {
   return callback_cq;
 }
 
+// begin lbr
 int Server::SetInterceptorCreators(
     std::vector<std::unique_ptr<
         grpc::experimental::ServerInterceptorFactoryInterface>>&&
