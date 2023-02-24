@@ -104,8 +104,9 @@ class Channel final : public grpc::ChannelInterface,
       const grpc::internal::RpcMethod& method, grpc::ClientContext* context,
       grpc::CompletionQueue* cq, size_t interceptor_pos) override;
 
-    int SetInterceptorCreators(std::vector<
-      std::unique_ptr<grpc::experimental::ClientInterceptorFactoryInterface>>);
+  int SetInterceptorCreators(
+      std::vector<std::unique_ptr<
+          grpc::experimental::ClientInterceptorFactoryInterface>>&&);
   const std::string host_;
   grpc_channel* const c_channel_;  // owned
 
