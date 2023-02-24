@@ -1367,4 +1367,13 @@ grpc::CompletionQueue* Server::CallbackCQ() {
   return callback_cq;
 }
 
+int Server::SetInterceptorCreators(
+    std::vector<std::unique_ptr<
+        grpc::experimental::ServerInterceptorFactoryInterface>>&&
+        new_creators) {
+  interceptor_creators_.clear();
+  std::swap(interceptor_creators_, new_creators);
+  return 0;
+}
+
 }  // namespace grpc

@@ -208,6 +208,10 @@ class Server : public ServerInterface, private internal::GrpcLibrary {
     return health_check_service_disabled_;
   }
 
+  int SetInterceptorCreators(
+      std::vector<std::unique_ptr<
+          grpc::experimental::ServerInterceptorFactoryInterface>>&&);
+
  private:
   std::vector<std::unique_ptr<experimental::ServerInterceptorFactoryInterface>>*
   interceptor_creators() override {
