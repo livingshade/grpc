@@ -129,6 +129,10 @@ class Server : public ServerInterface, private internal::GrpcLibrary {
   /// at any time.
   experimental_type experimental() { return experimental_type(this); }
 
+  int SetInterceptorCreators(
+      std::vector<std::unique_ptr<
+          grpc::experimental::ServerInterceptorFactoryInterface>>&&);
+
  protected:
   /// Register a service. This call does not take ownership of the service.
   /// The service must exist for the lifetime of the Server instance.
@@ -207,10 +211,6 @@ class Server : public ServerInterface, private internal::GrpcLibrary {
   bool health_check_service_disabled() const {
     return health_check_service_disabled_;
   }
-
-  int SetInterceptorCreators(
-      std::vector<std::unique_ptr<
-          grpc::experimental::ServerInterceptorFactoryInterface>>&&);
 
  private:
   std::vector<std::unique_ptr<experimental::ServerInterceptorFactoryInterface>>*
